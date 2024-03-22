@@ -2,46 +2,126 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid rgb(10, 10, 10);
+  /* border: 1px solid rgb(10, 10, 10); */
 }
 
 body {
-  background-color: #dddbdb;
+  background: linear-gradient(to bottom, #6976ec 0%, #8ff4a7 100%);
   font-family: "Poppins", sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .introBlock {
   width: 400px;
-  height: 400px;
-  margin: auto;
+  height: 630px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.mainLogo {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 10px;
+  transition: transform 0.4s ease;
+}
+
+.mainLogo:hover {
+  transform: scale(1.4);
+}
+
+.Btn {
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  border: 1px solid rgb(10, 10, 10);
+}
+
+.Btn:hover {
+  transform: scale(1.1);
 }
 
 .memory-game {
   width: 800px;
-  height: 400px;
+  height: 800px;
   margin: auto;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
   flex-wrap: wrap;
   padding: 20px;
 }
 
 .memory-card {
-  width: auto;
-}
-
-.mainLogo {
-  width: 40%;
+  width: 250px;
+  height: auto;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  padding: 10px;
+  align-items: center;
+  transition: transform 0.8s ease;
 }
 
 .front-face,
 .back-face {
-  width: 20%;
+  width: 150px;
+  padding: 30px;
+  border-radius: 5px;
+  color: aliceblue;
+  z-index: 2;
   padding: 10px;
-  border-radius: 10px;
+}
+
+/* .front-face,
+.back-face:hover {
+  transform: scale(1.2);
+} */
+
+.back-face {
+  display: none;
+}
+
+.front-face,
+.back-face:hover {
+  cursor: pointer;
+}
+
+.restartBtn {
+  width: 400px;
+  height: 100px;
+  margin: 20px auto 20px auto;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
 }
