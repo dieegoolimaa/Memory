@@ -16,79 +16,88 @@
     <section class="introBlock">
       <img class="mainLogo" src="images/card.png" alt="logo" />
       <h2 class="mainLevelBtn">LEVEL</h2>
-      <button class="Btn">Let's start!</button>
+      <button id="startBtn" class="Btn">Let's start!</button>
     </section>
 
     <section class="game-container">
-      <div class="memory-card">
+      <div class="memory-card" data-framework="angle-left">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/angle-left.png" alt="back-face" />
       </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/angle-right.png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/heart (1).png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/heart.png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker (1).png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker.png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play (1).png" alt="back-face" />
-      </div>
-      <div class="memory-card">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play.png" alt="back-face" />
-      </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="angle-left">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/angle-left.png" alt="back-face" />
       </div>
-      <div class="memory-card">
+
+      <div class="memory-card" data-framework="angle-right">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/angle-right.png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="angle-right">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/angle-right.png" alt="back-face" />
+      </div>
+      <!-- 
+      <div class="memory-card" data-framework="heart (1)">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/heart (1).png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="heart (1)">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/heart (1).png" alt="back-face" />
+      </div>
+
+      <div class="memory-card" data-framework="heart">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/heart.png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="heart">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/heart.png" alt="back-face" />
+      </div>
+
+      <div class="memory-card" data-framework="marker (1)">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/marker (1).png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="marker (1)">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/marker (1).png" alt="back-face" />
+      </div>
+
+      <div class="memory-card" data-framework="marker">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/marker.png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="marker">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/marker.png" alt="back-face" />
+      </div>
+
+      <div class="memory-card" data-framework="play (1)">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/play (1).png" alt="back-face" />
       </div>
-      <div class="memory-card">
+      <div class="memory-card" data-framework="play (1)">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/play (1).png" alt="back-face" />
+      </div>
+
+      <div class="memory-card" data-framework="play">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/play.png" alt="back-face" />
       </div>
+      <div class="memory-card" data-framework="play">
+        <img class="front-face" src=images/card.png alt="front-face">
+        <img class="back-face" src="images/play.png" alt="back-face" />
+      </div> -->
     </section>
 
-    <section class="restartBtn">
-      <button class="Btn">RESTART</button>
+    <section class="duringGameBtn">
+      <button id="restartBtn" class="Btn">Restart</button>
+      <button id="goBackToHomePageBtn" class="Btn">Go Back</button>
     </section>
+
     <script src="src/scripts.js"></script>
   </body>
 </html>

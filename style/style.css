@@ -2,11 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid rgb(10, 10, 10);
 }
 
 body {
-  background: linear-gradient(to top, #ffffffd6 100%, #dcf5b6 30%);
+  background: linear-gradient(137.48deg, #ffdb3b 10%, #0044ff 87%);
   font-family: "Poppins", sans-serif;
   color: rgb(0, 0, 0);
 }
@@ -52,8 +51,11 @@ body {
 }
 
 .Btn {
-  width: 300px;
-  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 280px;
+  height: 35px;
   border-radius: 5px;
   transition: transform 0.2s ease;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
@@ -67,16 +69,13 @@ body {
 }
 
 .game-container {
-  width: 1000px;
-  height: 950px;
+  width: 640px;
+  height: 740px;
   margin: auto;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: none;
   flex-wrap: wrap;
   perspective: 1000px;
-
-  border: 1px solid rgb(253, 3, 3);
+  perspective: 1000px;
 }
 
 .memory-card {
@@ -89,12 +88,13 @@ body {
   margin: 5px;
   position: relative;
   transform: scale(1.1);
-  border: 1px solid rgb(38, 255, 0);
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
 }
 
 .memory-card:active {
   transform: scale(0.9);
-  transition: transform 0.3s;
+  transition: transform 3s;
 }
 
 .memory-card.flip {
@@ -108,22 +108,23 @@ body {
   align-items: center;
   width: auto;
   height: 100%;
-  padding: 50px 30px;
+  padding: 40px 20px;
   backface-visibility: hidden;
-  border: 1px solid rgb(38, 0, 255);
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .front-face {
+  padding: 20px 0px;
+}
+.back-face {
   transform: rotateY(180deg);
 }
 
-.restartBtn {
-  width: 400px;
-  height: 100px;
-  margin: 20px auto;
+.duringGameBtn {
+  width: 100%;
+  height: 120px;
   display: none;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 10px;
 }
