@@ -2,33 +2,61 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid black; */
 }
 
 body {
-  background: linear-gradient(137.48deg, #ffdb3b 10%, #0044ff 87%);
-  font-family: "Poppins", sans-serif;
-  color: rgb(0, 0, 0);
+  background-image: url("images/forest.png");
+  width: 100vw;
+  height: 100vh;
+  background: rgba(111, 112, 116, 0.834);
+  font-family: "Public Sans", sans-serif;
+  letter-spacing: 1.2;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
 }
 
 .header {
   width: 100%;
+  height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.title,
+.title {
+  width: 100%;
+  display: block;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 4rem;
+  color: #645937;
+  text-align: center;
+}
+
 .subtitle {
   width: 100%;
   display: block;
+  color: #645937;
+  font-weight: normal;
+  font-size: 2rem;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 1%;
+}
+
+.description {
+  width: 100%;
+  display: block;
+  font-weight: bold;
+  font-weight: normal;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .introBlock {
-  width: 400px;
-  height: 630px;
+  width: 500px;
+  height: 600px;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -37,55 +65,82 @@ body {
   padding: 10px;
 }
 
+.btnBlock {
+  width: 400px;
+  height: 630px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
 .mainLogo {
   width: 300px;
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
   padding: 10px;
+  border: 2px solid rgb(0, 0, 0);
+  box-shadow: 15px 20px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
 }
 
 .mainLogo:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
   transition: transform 0.4s ease;
 }
 
 .Btn {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 280px;
-  height: 35px;
-  border-radius: 5px;
-  transition: transform 0.2s ease;
-  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
-  font-size: 1rem;
-  border: 1px solid rgb(10, 10, 10);
+  height: 30px;
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: #c5c4c2;
+  box-shadow: #9f9f9e;
+  color: hsl(0, 0%, 0%);
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
 }
 
 .Btn:hover {
-  transform: scale(1.1);
-  transition: transform 0.4s ease;
+  font-weight: bold;
+  letter-spacing: 3px;
+  background-color: #645937;
+  box-shadow: #8b8679;
+  color: hsl(0, 0%, 100%);
 }
 
 .game-container {
-  width: 640px;
-  height: 740px;
+  width: 100vw;
+  height: 700px;
   margin: auto;
   display: none;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  perspective: 1000px;
   perspective: 1000px;
 }
 
 .memory-card {
-  width: calc(22% - 10px);
-  height: calc(23% - 10px);
+  width: calc(18% - 10px);
+  height: calc(20% - 10px);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin: 5px;
+  /* margin-top: 60px; */
   position: relative;
   transform: scale(1.1);
   transition: transform 0.5s;
@@ -106,11 +161,18 @@ body {
   border-radius: 20px;
   position: absolute;
   align-items: center;
-  width: auto;
+  width: 70%;
   height: 100%;
   padding: 40px 20px;
   backface-visibility: hidden;
   border: 1px solid rgb(0, 0, 0);
+  box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(90deg, #e0dddd 10%, #b5b2b2d0 100%);
+}
+
+.front-face,
+.back-face:hover {
+  cursor: pointer;
 }
 
 .front-face {
@@ -119,12 +181,27 @@ body {
 .back-face {
   transform: rotateY(180deg);
 }
-
-.duringGameBtn {
-  width: 100%;
-  height: 120px;
+.btnBlock {
+  width: 300px;
+  height: 150px;
   display: none;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
+.victory-modal {
+  margin-top: 80px;
+  width: 100%;
+  height: 200px;
+  display: none;
+  font-family: "Public Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 2rem;
+  text-align: center; /* Center text horizontally */
+  color: white;
 }

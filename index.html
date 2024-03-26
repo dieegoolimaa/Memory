@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Social Match</title>
     <link rel="stylesheet" href="style/style.css" />
-    <!-- <script src="src/memorygame.js"></script> -->
   </head>
 
   <body>
@@ -15,7 +15,14 @@
 
     <section class="introBlock">
       <img class="mainLogo" src="images/card.png" alt="logo" />
-      <h2 class="mainLevelBtn">LEVEL</h2>
+      <div class="description">
+        Social Media Icons: <br />
+        Match all your favorite social media platform icons.
+      </div>
+      <div class="description">
+        Replayability:<br />
+        Restart the game easily with a single click when completing the game.
+      </div>
       <button id="startBtn" class="Btn">Let's start!</button>
     </section>
 
@@ -29,15 +36,6 @@
         <img class="back-face" src="images/angle-left.png" alt="back-face" />
       </div>
 
-      <div class="memory-card" data-framework="angle-right">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/angle-right.png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="angle-right">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/angle-right.png" alt="back-face" />
-      </div>
-      <!-- 
       <div class="memory-card" data-framework="heart (1)">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/heart (1).png" alt="back-face" />
@@ -90,11 +88,15 @@
       <div class="memory-card" data-framework="play">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/play.png" alt="back-face" />
-      </div> -->
+      </div>
     </section>
 
-    <section class="duringGameBtn">
-      <button id="restartBtn" class="Btn">Restart</button>
+    <section class="victory-modal">
+      <div>Congratulations! You've matched all the cards! 🎉"</div>
+    </section>
+
+    <section class="btnBlock">
+      <button id="restartBtn" class="Btn">Restart Game</button>
       <button id="goBackToHomePageBtn" class="Btn">Go Back</button>
     </section>
 
