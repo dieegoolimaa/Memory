@@ -159,9 +159,8 @@ body {
 .front-face,
 .back-face {
   border-radius: 20px;
-  position: absolute;
   align-items: center;
-  width: 70%;
+  width: 120px;
   height: 100%;
   padding: 40px 20px;
   backface-visibility: hidden;
