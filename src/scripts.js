@@ -6,7 +6,6 @@ class MemoryGame {
     this.firstCardClicked = null;
     this.secondCardClicked = null;
     this.allCardsMatched = false;
-    this.score = 0;
     this.startBtn = document.querySelector("#startBtn");
     this.restartBtn = document.querySelector("#restartBtn");
     this.goBackToHomePageBtn = document.querySelector("#goBackToHomePageBtn");
@@ -43,7 +42,6 @@ class MemoryGame {
 
     if (isMatch) {
       this.disableCards(); // Disable matched cards
-      this.score += 100; // Update score on match
     } else {
       this.unflipCards(); // Unflip cards if not a match
     }
@@ -92,7 +90,6 @@ class MemoryGame {
       card.addEventListener("click", () => this.flipCard(card))
     );
     this.allCardsMatched = false;
-    this.score = 0;
   }
 
   restartGame() {
@@ -102,7 +99,6 @@ class MemoryGame {
       card.classList.remove("flip");
       card.addEventListener("click", () => this.flipCard(card));
     });
-    this.score = 0;
   }
 
   areCardsMatching() {
