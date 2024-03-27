@@ -1,4 +1,5 @@
 * {
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,32 +7,46 @@
 }
 
 body {
-  background-image: url("images/forest.png");
   width: 100vw;
-  height: 100vh;
-  background: rgba(111, 112, 116, 0.834);
-  font-family: "Public Sans", sans-serif;
-  letter-spacing: 1.2;
-  font-optical-sizing: auto;
-  font-weight: bold;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0px;
+  word-spacing: -1.4px;
+  color: #2d2306;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
   font-style: normal;
+  font-variant: small-caps;
+  text-transform: none;
+  background: linear-gradient(
+    3deg,
+    rgba(187, 187, 190, 1) 0%,
+    rgba(246, 240, 227, 1) 100%
+  );
 }
 
 .header {
+  margin-top: 10px;
   width: 100%;
-  height: 140px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 90px;
 }
 
 .title {
   width: 100%;
   display: block;
-  font-weight: bold;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 31px;
+  letter-spacing: -1.4px;
+  word-spacing: -2px;
+  color: #51400b;
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
   font-style: normal;
-  font-size: 4rem;
-  color: #645937;
+  font-variant: normal;
+  text-transform: uppercase;
   text-align: center;
 }
 
@@ -42,7 +57,7 @@ body {
   font-weight: normal;
   font-size: 2rem;
   text-align: center;
-  margin-top: 1%;
+  margin-top: 5px;
 }
 
 .description {
@@ -56,7 +71,7 @@ body {
 
 .introBlock {
   width: 500px;
-  height: 600px;
+  height: 800px;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -71,21 +86,23 @@ body {
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   font-weight: bold;
 }
 
 .mainLogo {
-  width: 300px;
-  display: flex;
-  justify-content: center;
+  width: 400px;
+  padding: 50px;
   margin-bottom: 30px;
-  padding: 10px;
-  border: 2px solid rgb(0, 0, 0);
-  box-shadow: 15px 20px 20px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+  box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    3deg,
+    rgba(145, 138, 127, 1) 0%,
+    rgba(246, 240, 227, 1) 100%
+  );
 }
 
 .mainLogo:hover {
@@ -95,52 +112,59 @@ body {
 
 .Btn {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 280px;
   height: 30px;
-  padding: 17px 40px;
-  border-radius: 50px;
+  border-radius: 30px;
   cursor: pointer;
-  background-color: #c5c4c2;
-  box-shadow: #9f9f9e;
-  color: hsl(0, 0%, 0%);
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  background-color: #827864;
+  color: hsl(0, 0%, 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0px;
+  word-spacing: -1.4px;
   font-size: 15px;
+  font-variant: small-caps;
   transition: all 0.5s ease;
 }
 
 .Btn:hover {
   font-weight: bold;
   letter-spacing: 3px;
-  background-color: #645937;
-  box-shadow: #8b8679;
+  background-color: #64593798;
   color: hsl(0, 0%, 100%);
 }
 
+.score {
+  display: none;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+}
+
 .game-container {
-  width: 100vw;
-  height: 700px;
+  width: 1000px;
+  height: 800px;
   margin: auto;
   display: none;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
   perspective: 1000px;
 }
 
 .memory-card {
-  width: calc(18% - 10px);
-  height: calc(20% - 10px);
+  width: 160px;
+  height: 170px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 5px;
-  /* margin-top: 60px; */
+  margin: 4px;
   position: relative;
   transform: scale(1.1);
   transition: transform 0.5s;
@@ -149,24 +173,32 @@ body {
 
 .memory-card:active {
   transform: scale(0.9);
-  transition: transform 3s;
+  transition: transform 0.5s;
+  width: 160px;
+  height: 170px;
 }
 
 .memory-card.flip {
   transform: rotateY(180deg);
+  width: 160px;
+  height: 170px;
 }
 
 .front-face,
 .back-face {
+  display: flex;
   border-radius: 20px;
-  align-items: center;
-  width: 120px;
-  height: 100%;
-  padding: 40px 20px;
+  position: absolute;
+  width: 150px;
+  height: 160px;
+  padding: 40px;
   backface-visibility: hidden;
-  border: 1px solid rgb(0, 0, 0);
   box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(90deg, #e0dddd 10%, #b5b2b2d0 100%);
+  background: linear-gradient(
+    3deg,
+    rgba(145, 138, 127, 1) 0%,
+    rgba(246, 240, 227, 1) 100%
+  );
 }
 
 .front-face,
@@ -177,18 +209,22 @@ body {
 .front-face {
   padding: 20px 0px;
 }
+
 .back-face {
   transform: rotateY(180deg);
+  width: 150px;
+  height: 160px;
+  padding: 40px;
 }
+
 .btnBlock {
   width: 300px;
-  height: 150px;
+  height: 100px;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  gap: 20px;
+  gap: 10px;
 }
 
 .victory-modal {
@@ -200,7 +236,133 @@ body {
   font-optical-sizing: auto;
   font-weight: bold;
   font-style: normal;
-  font-size: 2rem;
-  text-align: center; /* Center text horizontally */
-  color: white;
+  font-size: 3rem;
+  text-align: center;
+  text-decoration: none solid rgb(68, 68, 68);
+}
+
+@media (min-width: 1000px) {
+  body {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .header {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+  body {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .game-container {
+    width: 800px;
+    height: 700px;
+    flex-wrap: wrap;
+  }
+
+  .memory-card {
+    width: 130px;
+    height: 150px;
+    flex-wrap: wrap;
+    transform: scale(1.1);
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+  }
+  .memory-card:active {
+    transform: scale(0.9);
+    transition: transform 0.5s;
+  }
+
+  .memory-card.flip {
+    transform: rotateY(180deg);
+    width: 130px;
+    height: 150px;
+  }
+
+  .front-face,
+  .back-face {
+    width: 110px;
+    height: 120px;
+    padding: 20px;
+  }
+
+  .back-face {
+    transform: rotateY(180deg);
+    width: 140px;
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    width: 768px;
+    height: 100vh;
+  }
+
+  .header {
+    margin-top: 5px;
+    width: 100%;
+    height: 100px;
+  }
+
+  .title,
+  .subtitle {
+    width: 100%;
+  }
+
+  .introBlock {
+    width: 450px;
+    height: 500px;
+  }
+
+  .mainLogo {
+    width: 200px;
+  }
+
+  .game-container {
+    width: 750px;
+    height: 540px;
+  }
+
+  .memory-card {
+    width: 120px;
+    height: 130px;
+  }
+
+  .memory-card:active {
+    transform: scale(0.9);
+    transition: transform 0.5s;
+  }
+
+  .memory-card.flip {
+    transform: rotateY(180deg);
+    width: 130px;
+    height: 140px;
+  }
+
+  .front-face,
+  .back-face {
+    width: 110px;
+    height: 120px;
+    padding: 20px;
+  }
+
+  .back-face {
+    transform: rotateY(180deg);
+    width: 125px;
+    height: 135px;
+    padding: auto;
+  }
+
+  .btnBlock {
+    position: relative;
+    top: auto;
+    width: 300px;
+    height: 60px;
+    gap: 10px;
+  }
 }
