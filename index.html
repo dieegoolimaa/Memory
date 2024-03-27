@@ -3,29 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Match</title>
+    <title>Memory Game</title>
     <link rel="stylesheet" href="style/style.css" />
   </head>
 
   <body>
     <header class="header">
-      <h1 class="title">SOCIAL GAME</h1>
+      <h1 class="title">MEMORY GAME</h1>
       <h2 class="subtitle">The Ultimate Memory Challenge</h2>
     </header>
-
+    <section><div class="score">Score:</div></section>
     <section class="introBlock">
       <img class="mainLogo" src="images/card.png" alt="logo" />
       <div class="description">
-        Social Media Icons: <br />
+        <b>Social Media Icons:</b> <br />
         Match all your favorite social media platform icons.
       </div>
       <div class="description">
-        Replayability:<br />
+        <b>Replayability:</b><br />
         Restart the game easily with a single click when completing the game.
+      </div>
+      <div class="description">
+        <b>Flip Cards:</b> <br />
+        Click on any two cards to reveal their pictures.
       </div>
       <button id="startBtn" class="Btn">Let's start!</button>
     </section>
-
     <section class="game-container">
       <div class="memory-card" data-framework="angle-left">
         <img class="front-face" src=images/card.png alt="front-face">
@@ -35,7 +38,6 @@
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/angle-left.png" alt="back-face" />
       </div>
-
       <div class="memory-card" data-framework="heart (1)">
         <img class="front-face" src=images/card.png alt="front-face">
         <img class="back-face" src="images/heart (1).png" alt="back-face" />
@@ -45,54 +47,88 @@
         <img class="back-face" src="images/heart (1).png" alt="back-face" />
       </div>
 
-      <div class="memory-card" data-framework="heart">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/heart.png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="heart">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/heart.png" alt="back-face" />
-      </div>
+      <!-- <div class="memory-card" data-framework="heart">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/heart.png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="heart">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/heart.png" alt="back-face" />
+        </div>
 
-      <div class="memory-card" data-framework="marker (1)">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker (1).png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="marker (1)">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker (1).png" alt="back-face" />
-      </div>
+        <div class="memory-card" data-framework="marker (1)">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/marker (1).png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="marker (1)">
+          <img class="front-face"src=images/card.png alt="front-face">
+          <img class="back-face" src="images/marker (1).png" alt="back-face" />
+        </div>
 
-      <div class="memory-card" data-framework="marker">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker.png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="marker">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/marker.png" alt="back-face" />
-      </div>
+        <div class="memory-card" data-framework="marker">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/marker.png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="marker">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/marker.png" alt="back-face" />
+        </div>
 
-      <div class="memory-card" data-framework="play (1)">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play (1).png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="play (1)">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play (1).png" alt="back-face" />
-      </div>
+        <div class="memory-card" data-framework="play (1)">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/play (1).png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="play (1)">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/play (1).png" alt="back-face" />
+        </div>
 
-      <div class="memory-card" data-framework="play">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play.png" alt="back-face" />
-      </div>
-      <div class="memory-card" data-framework="play">
-        <img class="front-face" src=images/card.png alt="front-face">
-        <img class="back-face" src="images/play.png" alt="back-face" />
-      </div>
+        <div class="memory-card" data-framework="play">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/play.png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="play">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/play.png" alt="back-face" />
+        </div>
+
+        <div class="memory-card" data-framework="visual-basic">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img
+            class="back-face"
+            src="images/visual-basic.png"
+            alt="back-face"
+          />
+        </div>
+        <div class="memory-card" data-framework="visual-basic">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img
+            class="back-face"
+            src="images/visual-basic.png"
+            alt="back-face"
+          />
+        </div>
+        <div class="memory-card" data-framework="users">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/users.png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="users">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/users.png" alt="back-face" />
+        </div>
+
+        <div class="memory-card" data-framework="users-alt">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/users-alt.png" alt="back-face" />
+        </div>
+        <div class="memory-card" data-framework="users-alt">
+          <img class="front-face" src=images/card.png alt="front-face">
+          <img class="back-face" src="images/users-alt.png" alt="back-face" />
+        </div> -->
     </section>
 
     <section class="victory-modal">
-      <div>Congratulations! You've matched all the cards! 🎉"</div>
+      <div>Congratulations! You've matched all the cards! 🎉</div>
     </section>
 
     <section class="btnBlock">

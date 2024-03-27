@@ -24,7 +24,6 @@ class MemoryGame {
       this.startBtn.style.display = "none";
       this.gameContainer.style.display = "flex";
       this.btnBlock.style.display = "flex";
-
       this.shuffleCards();
       this.cards.forEach((card) =>
         card.addEventListener("click", () => this.flipCard(card))
@@ -61,6 +60,7 @@ class MemoryGame {
 
     if (isMatch) {
       this.disableCards();
+
       if (this.allCardsMatched()) {
         this.displayMotivationalMessage();
       }
@@ -86,7 +86,7 @@ class MemoryGame {
       this.firstCardClicked.classList.remove("flip");
       this.secondCardClicked.classList.remove("flip");
       this.resetBoard();
-    }, 1300);
+    }, 1500);
   }
 
   flipCard(card) {
