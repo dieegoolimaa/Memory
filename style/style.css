@@ -152,6 +152,8 @@ body {
 
 .score {
   display: block;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .game-container {

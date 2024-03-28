@@ -70,6 +70,7 @@ class MemoryGame {
       this.gameContainer.style.display = "flex";
       this.btnBlock.style.display = "flex";
       this.message.style.display = "none";
+      this.restartBtn.style.display = "flex";
     });
   }
 
