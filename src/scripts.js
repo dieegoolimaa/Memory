@@ -1,5 +1,6 @@
 class MemoryGame {
   constructor() {
+    // Get references to DOM elements
     this.cards = document.querySelectorAll(".memory-card");
     this.gameContainer = document.querySelector(".game-container");
     this.introPage = document.querySelector(".introBlock");
@@ -7,6 +8,11 @@ class MemoryGame {
     this.startBtn = document.querySelector("#startBtn");
     this.restartBtn = document.querySelector("#restartBtn");
     this.message = document.querySelector(".victory-modal");
+    this.scoreElement = document.querySelector(".score");
+    this.scoreElement.style.display = "none";
+
+    this.score = 0;
+    this.multiplier = 10; // Increase score by 10 points per match
 
     this.cardFlipped = false;
     this.boardLocked = false;
@@ -24,22 +30,36 @@ class MemoryGame {
       this.startBtn.style.display = "none";
       this.gameContainer.style.display = "flex";
       this.btnBlock.style.display = "flex";
+      this.scoreElement.style.display = "block";
+
+      // Shuffle cards
+      this.score = 0;
+      scoreDisplay.innerText = this.score;
+
+      this.resetBoard();
       this.shuffleCards();
-      this.cards.forEach((card) =>
-        card.addEventListener("click", () => this.flipCard(card))
-      );
+      this.cards.forEach((card) => {
+        card.classList.remove("flip");
+        card.addEventListener("click", () => this.flipCard(card));
+      });
     });
   }
 
   shuffleCards() {
+    // Randomly order cards using Math.floor and requestAnimationFrame for smoother shuffling
     this.cards.forEach((card) => {
       card.style.order = Math.floor(Math.random() * 12);
+      window.requestAnimationFrame(() => {
+        card.style.transition = "transform 0.5s ease-in-out"; // Add a smooth shuffling animation (optional)
+      });
     });
   }
 
   restartGame() {
     const restartBtn = document.querySelector("#restartBtn");
     restartBtn.addEventListener("click", () => {
+      this.score = 0;
+      scoreDisplay.innerText = this.score;
       this.resetBoard();
       this.shuffleCards();
       this.cards.forEach((card) => {
@@ -59,6 +79,7 @@ class MemoryGame {
     const isMatch = firstCardContent === secondCardContent;
 
     if (isMatch) {
+      this.score += this.multiplier;
       this.disableCards();
 
       if (this.allCardsMatched()) {
@@ -67,14 +88,16 @@ class MemoryGame {
     } else {
       this.unflipCards();
     }
+
+    // Update the score display
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    scoreDisplay.innerText = this.score;
   }
 
   disableCards() {
-    this.firstCardClicked.removeEventListener("click", () =>
-      this.flipCard(this.firstCardClicked)
-    );
-    this.secondCardClicked.removeEventListener("click", () =>
-      this.flipCard(this.secondCardClicked)
+    const disabledCards = [this.firstCardClicked, this.secondCardClicked];
+    disabledCards.forEach((card) =>
+      card.removeEventListener("click", this.flipCard)
     );
 
     this.resetBoard();
@@ -86,30 +109,40 @@ class MemoryGame {
       this.firstCardClicked.classList.remove("flip");
       this.secondCardClicked.classList.remove("flip");
       this.resetBoard();
-    }, 1500);
+    }, 1300);
   }
 
   flipCard(card) {
-    if (this.boardLocked || card === this.firstCardClicked) return;
+    if (
+      this.boardLocked ||
+      card === this.firstCardClicked ||
+      card.classList.contains("flip")
+    )
+      return;
 
     card.classList.add("flip");
 
-    if (!this.cardFlipped) {
-      this.cardFlipped = true;
+    if (!this.firstCardClicked) {
       this.firstCardClicked = card;
     } else {
       this.secondCardClicked = card;
-      this.handleCardMatch(); // Call the combined function
+      this.handleCardMatch();
     }
   }
 
+  homePage() {
+    this.gameContainer.style.display = "none";
+    this.introPage.style.display = "flex";
+    this.btnBlock.style.display = "none";
+    this.startBtn.style.display = "block";
+    this.message.style.display = "none";
+    this.restartBtn.style.display = "none";
+    this.scoreElement.style.display = "none";
+  }
   backToHomePage() {
     const goBackToHomePageBtn = document.querySelector("#goBackToHomePageBtn");
     goBackToHomePageBtn.addEventListener("click", () => {
-      this.gameContainer.style.display = "none";
-      this.introPage.style.display = "flex";
-      this.btnBlock.style.display = "none";
-      this.startBtn.style.display = "block";
+      this.homePage();
     });
   }
 
