@@ -242,6 +242,11 @@ body {
   text-decoration: none solid rgb(68, 68, 68);
 }
 
+#canvas {
+  cursor: crosshair;
+  display: block;
+}
+
 @media (min-width: 1000px) {
   body {
     width: 100%;
