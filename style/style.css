@@ -300,7 +300,7 @@ body {
 @media screen and (max-width: 768px) {
   body {
     width: 100vh;
-    height: auto;
+    height: 100vh;
   }
 
   .header {
