@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid black; */
 }
 
 body {
@@ -149,7 +150,8 @@ body {
   color: hsl(0, 0%, 100%);
 }
 
-.score {
+.score,
+.timer {
   display: block;
   text-align: center;
   margin-top: 20px;
@@ -228,8 +230,9 @@ body {
   gap: 10px;
 }
 
-.victory-modal {
-  margin-top: 80px;
+#victoryMessage,
+#gameOver {
+  margin-top: 150px;
   width: 100%;
   height: 200px;
   display: none;

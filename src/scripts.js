@@ -5,11 +5,17 @@ class MemoryGame {
     this.gameContainer = document.querySelector(".game-container");
     this.introPage = document.querySelector(".introBlock");
     this.btnBlock = document.querySelector(".btnBlock");
-    this.startBtn = document.querySelector("#startBtn");
-    this.restartBtn = document.querySelector("#restartBtn");
-    this.message = document.querySelector(".victory-modal");
+    this.matchedAllCardsMessage = document.querySelector("#victoryMessage");
+    this.displayGameOverMessage = document.querySelector("#gameOver");
     this.scoreElement = document.querySelector(".score");
     this.scoreElement.style.display = "none";
+    this.timeBoard = document.querySelector(".timer");
+    this.timeBoard.style.display = "none";
+    this.startBtn = document.querySelector("#startBtn");
+    this.restartBtn = document.querySelector("#restartBtn");
+
+    this.restartBtn.addEventListener("click", () => this.startGame());
+    this.startBtn.addEventListener("click", () => this.startGame());
 
     this.score = 0;
     this.multiplier = 10; // Increase score by 10 points per match
@@ -18,30 +24,37 @@ class MemoryGame {
     this.boardLocked = false;
     this.firstCardClicked = null;
     this.secondCardClicked = null;
-
-    this.startGame();
-    this.restartGame();
-    this.backToHomePage();
+    this.duration = 10;
+    this.timerInterval = null; // Single timer instance for better control
   }
 
   startGame() {
-    this.startBtn.addEventListener("click", () => {
-      this.introPage.style.display = "none";
-      this.startBtn.style.display = "none";
-      this.gameContainer.style.display = "flex";
-      this.btnBlock.style.display = "flex";
-      this.scoreElement.style.display = "block";
+    this.introPage.style.display = "none";
+    this.startBtn.style.display = "none";
+    this.gameContainer.style.display = "flex";
+    this.btnBlock.style.display = "flex";
+    this.scoreElement.style.display = "block";
+    this.timeBoard.style.display = "block";
+    this.matchedAllCardsMessage.style.display = "none";
+    this.displayGameOverMessage.style.display = "none";
 
-      // Shuffle cards
-      this.score = 0;
-      scoreDisplay.innerText = this.score;
+    // Shuffle cards
+    this.score = 0;
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    scoreDisplay.innerText = this.score;
 
-      this.resetBoard();
-      this.shuffleCards();
-      this.cards.forEach((card) => {
-        card.classList.remove("flip");
-        card.addEventListener("click", () => this.flipCard(card));
-      });
+    // Clear any existing timer interval before starting a new one
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+
+    this.duration = 10; // Reset duration
+    this.startTimer();
+    this.resetBoard();
+    this.shuffleCards();
+    this.cards.forEach((card) => {
+      card.classList.remove("flip");
+      card.addEventListener("click", () => this.flipCard(card));
     });
   }
 
@@ -52,25 +65,6 @@ class MemoryGame {
       window.requestAnimationFrame(() => {
         card.style.transition = "transform 0.5s ease-in-out"; // Add a smooth shuffling animation (optional)
       });
-    });
-  }
-
-  restartGame() {
-    const restartBtn = document.querySelector("#restartBtn");
-    restartBtn.addEventListener("click", () => {
-      this.score = 0;
-      scoreDisplay.innerText = this.score;
-      this.resetBoard();
-      this.shuffleCards();
-      this.cards.forEach((card) => {
-        card.classList.remove("flip");
-        card.addEventListener("click", () => this.flipCard(card));
-      });
-
-      this.gameContainer.style.display = "flex";
-      this.btnBlock.style.display = "flex";
-      this.message.style.display = "none";
-      this.restartBtn.style.display = "flex";
     });
   }
 
@@ -85,6 +79,8 @@ class MemoryGame {
 
       if (this.allCardsMatched()) {
         this.displayMotivationalMessage();
+        clearInterval(this.timerInterval); // Stop the timer on win
+        this.timeBoard.style.display = "none";
       }
     } else {
       this.unflipCards();
@@ -136,10 +132,12 @@ class MemoryGame {
     this.introPage.style.display = "flex";
     this.btnBlock.style.display = "none";
     this.startBtn.style.display = "block";
-    this.message.style.display = "none";
+    this.matchedAllCardsMessage.style.display = "none";
     this.restartBtn.style.display = "none";
     this.scoreElement.style.display = "none";
+    this.timeBoard.style.display = "none";
   }
+
   backToHomePage() {
     const goBackToHomePageBtn = document.querySelector("#goBackToHomePageBtn");
     goBackToHomePageBtn.addEventListener("click", () => {
@@ -158,9 +156,39 @@ class MemoryGame {
     return [...this.cards].every((card) => card.classList.contains("flip"));
   }
 
+  startTimer() {
+    this.timerInterval = setInterval(() => {
+      this.updateTimerDisplay();
+      if (this.duration <= 0) {
+        this.gameOverByTime();
+        clearInterval(this.timerInterval);
+      }
+      this.duration--;
+    }, 1000); // Update every second
+  }
+
+  updateTimerDisplay() {
+    const minutes = Math.floor(this.duration / 60);
+    const seconds = Math.floor(this.duration % 60);
+    const formattedTime =
+      minutes.toString().padStart(2, "0") +
+      ":" +
+      seconds.toString().padStart(2, "0");
+    this.timeBoard.innerText = formattedTime;
+  }
+
   displayMotivationalMessage() {
     this.gameContainer.style.display = "none";
-    this.message.style.display = "block";
+    this.matchedAllCardsMessage.style.display = "block";
+    this.restartBtn.style.display = "block";
+    this.displayGameOverMessage.style.display = "none";
+  }
+
+  gameOverByTime() {
+    this.displayGameOverMessage.style.display = "block";
+    this.gameContainer.style.display = "none";
+    this.scoreElement.style.display = "none";
+    this.timeBoard.style.display = "none";
     this.restartBtn.style.display = "block";
   }
 }

@@ -12,6 +12,7 @@
       <h1 class="title">MEMORY GAME</h1>
       <h2 class="subtitle">The Ultimate Memory Challenge</h2>
       <div class="score">Score: <span id="scoreDisplay">0</span></div>
+      <div class="timer"><span id="timeBoard">Timer</span></div>
     </header>
     <section class="introBlock">
       <img class="mainLogo" src="images/card.png" alt="logo" />
@@ -112,8 +113,11 @@
       </div> -->
     </section>
 
-    <section class="victory-modal">
-      <div>Congratulations! You've matched all the cards! 🎉</div>
+    <section class="endGameMessages">
+      <div id="victoryMessage">
+        Congratulations! You've matched all the cards! 🎉
+      </div>
+      <div id="gameOver">Time's Up! Try Again? 😵</div>
     </section>
 
     <section class="btnBlock">
