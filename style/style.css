@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 body {
@@ -23,7 +23,7 @@ body {
   text-transform: none;
   background: linear-gradient(
     3deg,
-    rgba(187, 187, 190, 1) 0%,
+    rgb(229, 229, 232) 0%,
     rgba(246, 240, 227, 1) 100%
   );
 }
@@ -38,7 +38,7 @@ body {
   width: 100%;
   display: block;
   font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 31px;
+  font-size: 29px;
   letter-spacing: -1.4px;
   word-spacing: -2px;
   color: #51400b;
@@ -55,7 +55,7 @@ body {
   display: block;
   color: #645937;
   font-weight: normal;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: center;
   margin-top: 5px;
 }
@@ -154,7 +154,7 @@ body {
 .timer {
   display: block;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .game-container {
@@ -193,11 +193,10 @@ body {
 .front-face,
 .back-face {
   display: flex;
-  border-radius: 20px;
+  border-radius: 10px;
   position: absolute;
   width: 150px;
   height: 160px;
-  padding: 40px;
   backface-visibility: hidden;
   box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
   background: linear-gradient(

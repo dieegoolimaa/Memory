@@ -26,7 +26,7 @@ class MemoryGame {
     this.boardLocked = false;
     this.firstCardClicked = null;
     this.secondCardClicked = null;
-    this.duration = 10;
+    this.duration = 90;
     this.timerInterval = null; // Single timer instance for better control
   }
 
@@ -50,7 +50,7 @@ class MemoryGame {
       clearInterval(this.timerInterval);
     }
 
-    this.duration = 10; // Reset duration
+    this.duration = 90; // Reset duration
     this.startTimer();
     this.resetBoard();
     this.shuffleCards();
