@@ -217,6 +217,7 @@ body {
 
 .back-face {
   transform: rotateY(180deg);
+  padding: 40px 50px;
 }
 
 .btnBlock {
