@@ -13,9 +13,11 @@ class MemoryGame {
     this.timeBoard.style.display = "none";
     this.startBtn = document.querySelector("#startBtn");
     this.restartBtn = document.querySelector("#restartBtn");
+    this.goBackBtn = document.querySelector("#goBackToHomePageBtn");
 
     this.restartBtn.addEventListener("click", () => this.startGame());
     this.startBtn.addEventListener("click", () => this.startGame());
+    this.goBackBtn.addEventListener("click", () => this.homePage());
 
     this.score = 0;
     this.multiplier = 10; // Increase score by 10 points per match
@@ -136,13 +138,6 @@ class MemoryGame {
     this.restartBtn.style.display = "none";
     this.scoreElement.style.display = "none";
     this.timeBoard.style.display = "none";
-  }
-
-  backToHomePage() {
-    const goBackToHomePageBtn = document.querySelector("#goBackToHomePageBtn");
-    goBackToHomePageBtn.addEventListener("click", () => {
-      this.homePage();
-    });
   }
 
   resetBoard() {
