@@ -141,6 +141,8 @@ body {
 .game-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(130px, 1fr));
+  margin: 0 auto;
+  justify-content: center;
   gap: 5px;
   max-width: 530px;
   width: 100%;
