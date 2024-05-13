@@ -140,17 +140,18 @@ body {
 
 .game-container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
   gap: 5px;
-  max-width: 580px;
+  max-width: 530px;
   width: 100%;
   height: auto;
+
   perspective: 1000px;
 }
 
 .memory-card {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   position: relative;
   transition: transform 0.2s;
   transform-style: preserve-3d;
@@ -167,8 +168,8 @@ body {
 
 .front-face,
 .back-face {
-  width: 100%;
-  height: 100%;
+  width: 130px;
+  height: 130px;
   padding: 25px;
   position: absolute;
   border-radius: 15px;
@@ -238,22 +239,29 @@ body {
     width: 140px;
     height: 140px;
   }
+
+  .front-face,
+  .back-face {
+    width: 140px;
+    height: 140px;
+  }
 }
 
 @media (max-width: 680px) {
   .game-container {
     border: 1px solid black;
-    max-width: 420px;
+    max-width: 440px;
     width: 100%;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, minmax(105px, 1fr));
   }
 
   .memory-card {
-    width: 100px;
-    height: 100px;
+    width: 105px;
+    height: 105px;
   }
   .front-face,
   .back-face {
-    padding: 20px;
+    width: 105px;
+    height: 105px;
   }
 }
