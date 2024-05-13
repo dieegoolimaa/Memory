@@ -1,31 +1,12 @@
 * {
-  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: 1px solid black; */
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   height: 100%;
-  flex-direction: column;
-  justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  letter-spacing: 0px;
-  word-spacing: -1.4px;
-  color: #2d2306;
-  font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
-  font-style: normal;
-  font-variant: small-caps;
-  text-transform: none;
-  background: linear-gradient(
-    3deg,
-    rgb(229, 229, 232) 0%,
-    rgba(246, 240, 227, 1) 100%
-  );
 }
 
 .header {
@@ -158,32 +139,26 @@ body {
 }
 
 .game-container {
-  width: 1000px;
-  height: 800px;
-  margin: auto;
-  display: none;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 5px;
+  max-width: 580px;
+  width: 100%;
+  height: auto;
   perspective: 1000px;
 }
 
 .memory-card {
-  top: 20px;
-  width: 160px;
-  height: 170px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 4px;
+  width: 120px;
+  height: 120px;
   position: relative;
   transition: transform 0.2s;
   transform-style: preserve-3d;
+  perspective: 1000px; /* Added perspective for depth */
 }
 
 .memory-card:active {
-  transition: transform 0.2s;
+  transition: transform 0.2s ease-in-out;
 }
 
 .memory-card.flip {
@@ -192,18 +167,13 @@ body {
 
 .front-face,
 .back-face {
-  display: flex;
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
   position: absolute;
-  width: 150px;
-  height: 160px;
-  backface-visibility: hidden;
+  border-radius: 15px;
+  border: 0.1px solid #9d9c9c;
   box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(
-    3deg,
-    rgba(145, 138, 127, 1) 0%,
-    rgba(246, 240, 227, 1) 100%
-  );
 }
 
 .front-face,
@@ -212,12 +182,23 @@ body {
 }
 
 .front-face {
-  padding: 20px 0px;
+  background: linear-gradient(
+    90deg,
+    rgba(236, 236, 236, 1) 0%,
+    rgba(205, 203, 205, 1) 52%,
+    rgba(236, 236, 236, 1) 100%
+  );
 }
 
 .back-face {
+  background: linear-gradient(
+    90deg,
+    rgba(205, 203, 205, 1) 0%,
+    rgba(236, 236, 236, 1) 52%,
+    rgba(205, 203, 205, 1) 100%
+  );
   transform: rotateY(180deg);
-  padding: 40px 50px;
+  backface-visibility: hidden;
 }
 
 .btnBlock {
@@ -245,123 +226,34 @@ body {
   text-decoration: none solid rgb(68, 68, 68);
 }
 
-@media (min-width: 1000px) {
-  body {
-    width: 100%;
-    height: 100vh;
-  }
-
-  .header {
-    margin-bottom: 20px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1000px) {
-  body {
-    width: 100%;
-    height: 100vh;
-  }
-
+/* Optional: Responsive Adjustments */
+@media (max-width: 1368px) {
   .game-container {
-    width: 800px;
-    height: 750px;
-    flex-wrap: wrap;
+    max-width: 500px;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(140px, 1fr));
   }
 
   .memory-card {
-    top: 50px;
-    width: 130px;
+    width: 140px;
     height: 140px;
-    flex-wrap: wrap;
-    transition: transform 0.2s;
-    transform-style: preserve-3d;
-  }
-  .memory-card:active {
-    transition: transform 0.2s;
-  }
-
-  .memory-card.flip {
-    transform: rotateY(180deg);
-  }
-
-  .front-face,
-  .back-face {
-    width: 130px;
-    height: 140px;
-    padding: 20px;
-  }
-
-  .back-face {
-    transform: rotateY(180deg);
-  }
-
-  .btnBlock {
-    margin-top: 50px;
   }
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    width: 100vh;
-    height: 100vh;
+@media (max-width: 680px) {
+  .game-container {
+    border: 1px solid black;
+    max-width: 420px;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
   }
 
-  .header {
-    margin-top: 5px;
-    width: 100%;
+  .memory-card {
+    width: 100px;
     height: 100px;
   }
-
-  .title,
-  .subtitle {
-    width: 100vh;
-  }
-
-  .introBlock {
-    width: 450px;
-    height: 500px;
-  }
-
-  .mainLogo {
-    width: 200px;
-  }
-
-  .game-container {
-    width: 600px;
-    height: 640px;
-  }
-
-  .memory-card {
-    top: 60px;
-    width: 120px;
-    height: 130px;
-    transform-style: preserve-3d;
-  }
-
-  .memory-card:active {
-    transition: transform 0.2s;
-  }
-
-  .memory-card.flip {
-    transform: rotateY(180deg);
-  }
-
   .front-face,
   .back-face {
-    width: 110px;
-    height: 120px;
     padding: 20px;
-  }
-
-  .back-face {
-    transform: rotateY(180deg);
-  }
-
-  .btnBlock {
-    position: relative;
-    top: 80px;
-    width: 300px;
-    height: 80px;
-    gap: 5px;
   }
 }

@@ -33,14 +33,13 @@ class MemoryGame {
   startGame() {
     this.introPage.style.display = "none";
     this.startBtn.style.display = "none";
-    this.gameContainer.style.display = "flex";
+    this.gameContainer.style.display = "grid"; // This line controls the grid container visibility
     this.btnBlock.style.display = "flex";
     this.scoreElement.style.display = "block";
     this.timeBoard.style.display = "block";
     this.matchedAllCardsMessage.style.display = "none";
     this.displayGameOverMessage.style.display = "none";
 
-    // Shuffle cards
     this.score = 0;
     const scoreDisplay = document.getElementById("scoreDisplay");
     scoreDisplay.innerText = this.score;
@@ -65,7 +64,7 @@ class MemoryGame {
     this.cards.forEach((card) => {
       card.style.order = Math.floor(Math.random() * 12);
       window.requestAnimationFrame(() => {
-        card.style.transition = "transform 0.5s ease-in-out"; // Add a smooth shuffling animation (optional)
+        card.style.transition = "transform 0.5s ease-in-out"; // Smooth shuffling animation
       });
     });
   }
