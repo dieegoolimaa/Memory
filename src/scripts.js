@@ -87,7 +87,7 @@ class MemoryGame {
       });
 
       this.startTimer();
-    }, 3000); // Adjust the delay as needed
+    }, 1500); // Adjust the delay as needed
 
     // Clear any existing timer interval before starting a new one
     if (this.timerInterval) {
