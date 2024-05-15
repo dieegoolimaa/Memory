@@ -59,16 +59,17 @@ class MemoryGame {
     const scoreDisplay = document.getElementById("scoreDisplay");
     scoreDisplay.innerText = this.score;
 
+    this.shuffleCards();
+
     // Temporarily flip all cards to reveal images
     this.cards.forEach((card) => card.classList.add("flip"));
     let isCardRevealDone = false;
 
     setTimeout(() => {
+      this.resetBoard();
       this.cards.forEach((card) => card.classList.remove("flip"));
       isCardRevealDone = true; // Set flag to indicate reveal is complete
 
-      this.resetBoard();
-      this.shuffleCards();
       this.cards.forEach((card) => {
         if (isCardRevealDone) {
           // Check flag before adding event listener
@@ -77,7 +78,7 @@ class MemoryGame {
       });
 
       this.startTimer();
-    }, 1000); // Adjust the delay (in milliseconds) as needed
+    }, 3000); // Adjust the delay (in milliseconds) as needed
 
     // Clear any existing timer interval before starting a new one
     if (this.timerInterval) {
