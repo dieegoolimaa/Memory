@@ -175,8 +175,8 @@ class MemoryGame {
     this.moveCount += 1;
     console.log("Move count:", this.moveCount);
 
-    const scoreDisplay = document.getElementById("moveDisplay");
-    scoreDisplay.textContent = `${this.moveCount}`;
+    const moveDisplay = document.getElementById("moveDisplay");
+    moveDisplay.textContent = `${this.moveCount}`;
   }
 
   // Reset board
