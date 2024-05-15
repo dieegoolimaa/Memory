@@ -9,31 +9,30 @@
 
   <body>
     <header class="header">
-      <h1 class="title">MEMORY GAME</h1>
-      <h2 class="subtitle">The Ultimate Memory Challenge</h2>
-      <div class="score">Score: <span id="scoreDisplay">0</span></div>
-      <div class="timer"><span id="timeBoard">Timer</span></div>
+      <div class="scoreBoard">
+        <div class="score">Score: <span id="scoreDisplay">0</span></div>
+        <div class="timer"><span id="timeBoard">Timer</span></div>
+      </div>
     </header>
     <section class="introBlock">
-      <img
-        class="mainLogo"
-        src="images/
-      front-face-card.png"
-        alt="logo"
-      />
-      <div class="description">
-        <b>Social Media Icons:</b> <br />
-        Match all your favorite social media platform icons.
+      <div class="titleBlock">
+        <h1 class="title">Memory Game</h1>
+        <h2 class="subtitle">The Ultimate Memory Challenge</h2>
       </div>
+
       <div class="description">
-        <b>Replayability:</b><br />
-        Restart the game easily with a single click when completing the game.
+        <h4>Social Media Icons:</h4>
+        <p>Match all your favorite social media platform icons.</p>
+        </br>
+        <h4>Replayability</h4>
+        <p>
+          Restart the game easily with a single click when completing the game.
+        </p>
+        </br>
+        <h4>Flip Cards:</h4>
+        <p>Click on any two cards to reveal their pictures.</p>
       </div>
-      <div class="description">
-        <b>Flip Cards:</b> <br />
-        Click on any two cards to reveal their pictures.
-      </div>
-      <button id="startBtn" class="Btn">Let's start!</button>
+      <button id="startBtn">Let's start!</button>
     </section>
     <section class="game-container">
       <div class="memory-card" data-framework="aircraft">
@@ -126,8 +125,8 @@
     </section>
 
     <section class="btnBlock">
-      <button id="restartBtn" class="Btn">Restart Game</button>
-      <button id="goBackToHomePageBtn" class="Btn">Go Back</button>
+      <button id="restartBtn">Restart Game</button>
+      <button id="goBackToHomePageBtn">Go Back</button>
     </section>
 
     <script src="src/scripts.js"></script>

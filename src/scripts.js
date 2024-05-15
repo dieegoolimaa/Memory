@@ -30,6 +30,21 @@ class MemoryGame {
     this.timerInterval = null; // Single timer instance for better control
   }
 
+  // Methods
+
+  // Display home page
+  homePage() {
+    this.gameContainer.style.display = "none";
+    this.introPage.style.display = "flex";
+    this.btnBlock.style.display = "none";
+    this.startBtn.style.display = "block";
+    this.matchedAllCardsMessage.style.display = "none";
+    this.restartBtn.style.display = "none";
+    this.scoreElement.style.display = "none";
+    this.timeBoard.style.display = "none";
+  }
+
+  // Start the game
   startGame() {
     this.introPage.style.display = "none";
     this.startBtn.style.display = "none";
@@ -44,21 +59,35 @@ class MemoryGame {
     const scoreDisplay = document.getElementById("scoreDisplay");
     scoreDisplay.innerText = this.score;
 
+    // Temporarily flip all cards to reveal images
+    this.cards.forEach((card) => card.classList.add("flip"));
+    let isCardRevealDone = false;
+
+    setTimeout(() => {
+      this.cards.forEach((card) => card.classList.remove("flip"));
+      isCardRevealDone = true; // Set flag to indicate reveal is complete
+
+      this.resetBoard();
+      this.shuffleCards();
+      this.cards.forEach((card) => {
+        if (isCardRevealDone) {
+          // Check flag before adding event listener
+          card.addEventListener("click", () => this.flipCard(card));
+        }
+      });
+
+      this.startTimer();
+    }, 1000); // Adjust the delay (in milliseconds) as needed
+
     // Clear any existing timer interval before starting a new one
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
 
     this.duration = 90; // Reset duration
-    this.startTimer();
-    this.resetBoard();
-    this.shuffleCards();
-    this.cards.forEach((card) => {
-      card.classList.remove("flip");
-      card.addEventListener("click", () => this.flipCard(card));
-    });
   }
 
+  // Shuffle cards
   shuffleCards() {
     // Randomly order cards using Math.floor and requestAnimationFrame for smoother shuffling
     this.cards.forEach((card) => {
@@ -69,6 +98,7 @@ class MemoryGame {
     });
   }
 
+  // Handle card match
   handleCardMatch() {
     const firstCardContent = this.firstCardClicked.dataset.framework;
     const secondCardContent = this.secondCardClicked.dataset.framework;
@@ -92,6 +122,7 @@ class MemoryGame {
     scoreDisplay.innerText = this.score;
   }
 
+  // Disable cards
   disableCards() {
     const disabledCards = [this.firstCardClicked, this.secondCardClicked];
     disabledCards.forEach((card) =>
@@ -101,6 +132,7 @@ class MemoryGame {
     this.resetBoard();
   }
 
+  // Unflip cards
   unflipCards() {
     this.boardLocked = true;
     setTimeout(() => {
@@ -110,6 +142,7 @@ class MemoryGame {
     }, 1300);
   }
 
+  // Flip card
   flipCard(card) {
     if (
       this.boardLocked ||
@@ -128,17 +161,7 @@ class MemoryGame {
     }
   }
 
-  homePage() {
-    this.gameContainer.style.display = "none";
-    this.introPage.style.display = "flex";
-    this.btnBlock.style.display = "none";
-    this.startBtn.style.display = "block";
-    this.matchedAllCardsMessage.style.display = "none";
-    this.restartBtn.style.display = "none";
-    this.scoreElement.style.display = "none";
-    this.timeBoard.style.display = "none";
-  }
-
+  // Reset board
   resetBoard() {
     this.cardFlipped = false;
     this.boardLocked = false;
@@ -146,10 +169,12 @@ class MemoryGame {
     this.secondCardClicked = null;
   }
 
+  // Check if all cards are matched
   allCardsMatched() {
     return [...this.cards].every((card) => card.classList.contains("flip"));
   }
 
+  // Start timer
   startTimer() {
     this.timerInterval = setInterval(() => {
       this.updateTimerDisplay();
@@ -161,6 +186,7 @@ class MemoryGame {
     }, 1000); // Update every second
   }
 
+  // Update timer display
   updateTimerDisplay() {
     const minutes = Math.floor(this.duration / 60);
     const seconds = Math.floor(this.duration % 60);
@@ -171,6 +197,7 @@ class MemoryGame {
     this.timeBoard.innerText = formattedTime;
   }
 
+  // Display game over message
   displayMotivationalMessage() {
     this.gameContainer.style.display = "none";
     this.matchedAllCardsMessage.style.display = "block";
@@ -178,6 +205,7 @@ class MemoryGame {
     this.displayGameOverMessage.style.display = "none";
   }
 
+  // Game over by time
   gameOverByTime() {
     this.displayGameOverMessage.style.display = "block";
     this.gameContainer.style.display = "none";
