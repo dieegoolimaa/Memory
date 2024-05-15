@@ -230,6 +230,7 @@ class MemoryGame {
     this.scoreElement.style.display = "none";
     this.timeBoard.style.display = "none";
     this.restartBtn.style.display = "block";
+    this.moveElement.style.display = "none";
   }
 }
 
