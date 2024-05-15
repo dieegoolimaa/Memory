@@ -8,6 +8,7 @@ class MemoryGame {
     this.matchedAllCardsMessage = document.querySelector("#victoryMessage");
     this.displayGameOverMessage = document.querySelector("#gameOver");
     this.scoreElement = document.querySelector(".score");
+    this.moveDisplay = document.querySelector("moveDisplay");
     this.scoreElement.style.display = "none";
     this.timeBoard = document.querySelector(".timer");
     this.timeBoard.style.display = "none";
@@ -21,6 +22,7 @@ class MemoryGame {
 
     this.score = 0;
     this.multiplier = 10; // Increase score by 10 points per match
+    this.moveCount = 0;
 
     this.cardFlipped = false;
     this.boardLocked = false;
@@ -160,6 +162,12 @@ class MemoryGame {
       this.secondCardClicked = card;
       this.handleCardMatch();
     }
+
+    this.moveCount += 1;
+    console.log("Move count:", this.moveCount);
+
+    const scoreDisplay = document.getElementById("moveDisplay");
+    scoreDisplay.textContent = `${this.moveCount}`;
   }
 
   // Reset board
