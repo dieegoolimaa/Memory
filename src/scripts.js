@@ -8,10 +8,11 @@ class MemoryGame {
     this.matchedAllCardsMessage = document.querySelector("#victoryMessage");
     this.displayGameOverMessage = document.querySelector("#gameOver");
     this.scoreElement = document.querySelector(".score");
-    this.moveDisplay = document.querySelector("moveDisplay");
     this.scoreElement.style.display = "none";
     this.timeBoard = document.querySelector(".timer");
     this.timeBoard.style.display = "none";
+    this.moveElement = document.querySelector(".moves");
+    this.moveElement.style.display = "none";
     this.startBtn = document.querySelector("#startBtn");
     this.restartBtn = document.querySelector("#restartBtn");
     this.goBackBtn = document.querySelector("#goBackToHomePageBtn");
@@ -44,6 +45,7 @@ class MemoryGame {
     this.restartBtn.style.display = "none";
     this.scoreElement.style.display = "none";
     this.timeBoard.style.display = "none";
+    this.moveDisplay.style.display = "none";
   }
 
   // Start the game
@@ -54,12 +56,17 @@ class MemoryGame {
     this.btnBlock.style.display = "flex";
     this.scoreElement.style.display = "block";
     this.timeBoard.style.display = "block";
+    this.moveElement.style.display = "block";
     this.matchedAllCardsMessage.style.display = "none";
     this.displayGameOverMessage.style.display = "none";
 
     this.score = 0;
     const scoreDisplay = document.getElementById("scoreDisplay");
     scoreDisplay.innerText = this.score;
+
+    this.moveCount = 0;
+    const moveDisplay = document.getElementById("moveDisplay");
+    moveDisplay.textContent = this.moveCount;
 
     this.shuffleCards();
 
@@ -70,17 +77,17 @@ class MemoryGame {
     setTimeout(() => {
       this.resetBoard();
       this.cards.forEach((card) => card.classList.remove("flip"));
-      isCardRevealDone = true; // Set flag to indicate reveal is complete
+      isCardRevealDone = true; // Set flag before adding event listener
 
+      // Ensure listeners are attached after reveal
       this.cards.forEach((card) => {
         if (isCardRevealDone) {
-          // Check flag before adding event listener
           card.addEventListener("click", () => this.flipCard(card));
         }
       });
 
       this.startTimer();
-    }, 3000); // Adjust the delay (in milliseconds) as needed
+    }, 3000); // Adjust the delay as needed
 
     // Clear any existing timer interval before starting a new one
     if (this.timerInterval) {
@@ -109,6 +116,8 @@ class MemoryGame {
 
     if (isMatch) {
       this.score += this.multiplier;
+      const timeBonus = Math.floor(this.duration / 10); // Adjust divisor for desired scale
+      this.score += timeBonus; // Award time bonus for faster completion
       this.disableCards();
 
       if (this.allCardsMatched()) {
