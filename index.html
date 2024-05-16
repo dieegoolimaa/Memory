@@ -6,7 +6,6 @@
     <title>Memory Game</title>
     <link rel="stylesheet" href="style/style.css" />
   </head>
-
   <body>
     <header class="header">
       <div class="scoreBoard">
@@ -20,18 +19,21 @@
         <h1 class="title">Memory Game</h1>
         <h2 class="subtitle">The Ultimate Memory Challenge</h2>
       </div>
-
       <div class="description">
         <h4>Social Media Icons:</h4>
         <p>Match all your favorite social media platform icons.</p>
-        </br>
+        <br />
         <h4>Replayability</h4>
         <p>
           Restart the game easily with a single click when completing the game.
         </p>
-        </br>
+        <br />
         <h4>Flip Cards:</h4>
         <p>Click on any two cards to reveal their pictures.</p>
+      </div>
+      <div class="player-name-form">
+        <label for="playerName">Enter your name:</label>
+        <input type="text" id="playerName" placeholder="Your name" />
       </div>
       <button id="startBtn">Let's start!</button>
     </section>
@@ -52,7 +54,7 @@
         <img class="front-face" src=images/front-face-card.png alt="front-face">
         <img class="back-face" src="images/arcade-game.png" alt="back-face" />
       </div>
-      <div class="memory-card" data-framework="bus">
+      <!-- <div class="memory-card" data-framework="bus">
         <img class="front-face" src=images/front-face-card.png alt="front-face">
         <img class="back-face" src="images/bus.png" alt="back-face" />
       </div>
@@ -115,22 +117,23 @@
       <div class="memory-card" data-framework="game">
         <img class="front-face" src=images/front-face-card.png alt="front-face">
         <img class="back-face" src="images/game.png" alt="back-face" />
-      </div>
+      </div> -->
     </section>
-
     <section class="endGameMessages">
       <div id="victoryMessage">
         Congratulations! You've matched all the cards! 🎉
       </div>
       <div id="gameOver">Time's Up! Try Again? 😵</div>
     </section>
-
     <section class="btnBlock">
       <button id="restartBtn">Restart Game</button>
       <button id="goBackToHomePageBtn">Go Back</button>
     </section>
 
-    <script src="src/scripts.js"></script>
-    <script src="src/fireworks.js"></script>
+    <section class="score-history">
+      <h3>Score History</h3>
+      <ul id="scoreHistoryList"></ul>
+    </section>
+    <script src="src/script.js"></script>
   </body>
 </html>

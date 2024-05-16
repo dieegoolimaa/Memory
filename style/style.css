@@ -221,6 +221,29 @@ button:hover {
   gap: 10px;
 }
 
+.score-history {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Style for each score history item */
+.score-history li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Style for the player's name */
+.score-history li span.player {
+  font-weight: bold;
+}
+
+/* Style for the score */
+.score-history li span.score {
+  margin-left: 10px;
+  color: #007bff; /* Blue color for the score */
+}
+
 #victoryMessage,
 #gameOver {
   margin-top: 150px;
@@ -273,29 +296,28 @@ button:hover {
   }
 
   @media (max-width: 450px) {
-
     .title {
       font-size: 2rem;
     }
-    
+
     .subtitle {
       font-size: 1rem;
-
     }
     .game-container {
       margin: 10px auto;
       width: calc(100% - 30px);
       grid-template-columns: repeat(4, minmax(75px, 1fr));
     }
-  
+
     .memory-card {
       width: 75px;
       height: 75px;
     }
-  
+
     .front-face,
     .back-face {
       width: 75px;
       height: 75px;
     }
+  }
 }

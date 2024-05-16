@@ -16,6 +16,9 @@ class MemoryGame {
     this.startBtn = document.querySelector("#startBtn");
     this.restartBtn = document.querySelector("#restartBtn");
     this.goBackBtn = document.querySelector("#goBackToHomePageBtn");
+    this.scoreHistoryList = document.getElementById("scoreHistoryList");
+    this.scoreHistoryList.style.display = "none";
+    this.playerNameInput = document.getElementById("playerName");
 
     this.restartBtn.addEventListener("click", () => this.startGame());
     this.startBtn.addEventListener("click", () => this.startGame());
@@ -31,6 +34,7 @@ class MemoryGame {
     this.secondCardClicked = null;
     this.duration = 90;
     this.timerInterval = null; // Single timer instance for better control
+    this.scoreHistory = [];
   }
 
   // Methods
@@ -45,11 +49,17 @@ class MemoryGame {
     this.restartBtn.style.display = "none";
     this.scoreElement.style.display = "none";
     this.timeBoard.style.display = "none";
-    this.moveDisplay.style.display = "none";
+    this.moveElement.style.display = "none";
   }
 
   // Start the game
   startGame() {
+    const playerName = this.playerNameInput.value.trim();
+    if (playerName === "") {
+      alert("Please enter your name to start the game.");
+      return;
+    }
+
     this.introPage.style.display = "none";
     this.startBtn.style.display = "none";
     this.gameContainer.style.display = "grid"; // This line controls the grid container visibility
@@ -82,7 +92,7 @@ class MemoryGame {
       // Ensure listeners are attached after reveal
       this.cards.forEach((card) => {
         if (isCardRevealDone) {
-          card.addEventListener("click", () => this.flipCard(card));
+          card.addEventListener("click", (event) => this.flipCard(event));
         }
       });
 
@@ -101,7 +111,7 @@ class MemoryGame {
   shuffleCards() {
     // Randomly order cards using Math.floor and requestAnimationFrame for smoother shuffling
     this.cards.forEach((card) => {
-      card.style.order = Math.floor(Math.random() * 12);
+      card.style.order = Math.floor(Math.random() * this.cards.length);
       window.requestAnimationFrame(() => {
         card.style.transition = "transform 0.5s ease-in-out"; // Smooth shuffling animation
       });
@@ -124,6 +134,7 @@ class MemoryGame {
         this.displayMotivationalMessage();
         clearInterval(this.timerInterval); // Stop the timer on win
         this.timeBoard.style.display = "none";
+        this.saveScore();
       }
     } else {
       this.unflipCards();
@@ -136,9 +147,11 @@ class MemoryGame {
 
   // Disable cards
   disableCards() {
-    const disabledCards = [this.firstCardClicked, this.secondCardClicked];
-    disabledCards.forEach((card) =>
-      card.removeEventListener("click", this.flipCard)
+    this.firstCardClicked.removeEventListener("click", (event) =>
+      this.flipCard(event)
+    );
+    this.secondCardClicked.removeEventListener("click", (event) =>
+      this.flipCard(event)
     );
 
     this.resetBoard();
@@ -151,11 +164,13 @@ class MemoryGame {
       this.firstCardClicked.classList.remove("flip");
       this.secondCardClicked.classList.remove("flip");
       this.resetBoard();
-    }, 1300);
+    }, 1200);
   }
 
   // Flip card
-  flipCard(card) {
+  // Flip card
+  flipCard(event) {
+    const card = event.currentTarget;
     if (
       this.boardLocked ||
       card === this.firstCardClicked ||
@@ -221,8 +236,20 @@ class MemoryGame {
     this.matchedAllCardsMessage.style.display = "block";
     this.restartBtn.style.display = "block";
     this.displayGameOverMessage.style.display = "none";
-  }
+    this.displayScoreHistory();
 
+    // Check if the 'emoji' element exists before updating its textContent
+    const emoji = document.getElementById("emoji");
+    if (emoji) {
+      if (this.score >= 30) {
+        emoji.textContent = "🎉";
+      } else {
+        emoji.textContent = ""; // Clear emoji if score is below 30
+      }
+    } else {
+      console.error("Emoji element not found.");
+    }
+  }
   // Game over by time
   gameOverByTime() {
     this.displayGameOverMessage.style.display = "block";
@@ -231,6 +258,69 @@ class MemoryGame {
     this.timeBoard.style.display = "none";
     this.restartBtn.style.display = "block";
     this.moveElement.style.display = "none";
+    this.saveScore();
+    this.displayScoreHistory();
+  }
+
+  // Save score
+  saveScore() {
+    const playerName = this.playerNameInput.value.trim();
+    if (!playerName) {
+      console.error("Player name is required.");
+      return;
+    }
+
+    const scoreEntry = {
+      name: playerName,
+      score: this.score,
+      timeTaken: 90 - this.duration, // Calculate time taken
+      timestamp: new Date().toISOString(), // Add timestamp
+      description: "Game Over", // Add description
+    };
+
+    // Initialize scoreHistory if not already initialized
+    if (!this.scoreHistory) {
+      this.scoreHistory = [];
+    }
+
+    // Push the new score entry
+    this.scoreHistory.push(scoreEntry);
+
+    try {
+      // Save to localStorage (conditionally)
+      if (this.gameOver) {
+        localStorage.setItem("scoreHistory", JSON.stringify(this.scoreHistory));
+        console.log("Score saved to localStorage.");
+      }
+    } catch (error) {
+      console.error("Error saving score to localStorage:", error);
+    }
+
+    // Display score history immediately after saving the new score
+    this.displayScoreHistory();
+  }
+
+  // Display score history
+  displayScoreHistory() {
+    // Retrieve score history from localStorage
+    const storedHistory = JSON.parse(localStorage.getItem("scoreHistory"));
+    if (storedHistory) {
+      this.scoreHistory = storedHistory;
+    }
+
+    // Populate score history list
+    const scoreHistoryList = document.getElementById("scoreHistoryList");
+    scoreHistoryList.innerHTML = ""; // Clear existing list items
+
+    // Add new score entries to the list
+    this.scoreHistory.forEach((entry) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${entry.name}: ${entry.score} points`;
+      scoreHistoryList.appendChild(listItem);
+    });
+
+    // Show score history list
+    scoreHistoryList.style.display = "block";
   }
 }
 
