@@ -27,10 +27,9 @@ class MemoryGame {
     this.startBtn.addEventListener("click", () => this.startGame());
     this.goBackBtn.addEventListener("click", () => this.homePage());
 
-    this.score = 0;
-    this.multiplier = 10; // Increase score by 10 points per match
     this.moveCount = 0;
 
+    this.matchOccurred = false;
     this.cardFlipped = false;
     this.boardLocked = false;
     this.firstCardClicked = null;
@@ -74,10 +73,6 @@ class MemoryGame {
     this.matchedAllCardsMessage.style.display = "none";
     this.displayGameOverMessage.style.display = "none";
     this.scoreHistorySection.style.display = "none";
-
-    this.score = 0;
-    const scoreDisplay = document.getElementById("scoreDisplay");
-    scoreDisplay.innerText = this.score;
 
     this.moveCount = 0;
     const moveDisplay = document.getElementById("moveDisplay");
@@ -125,38 +120,26 @@ class MemoryGame {
 
   // Handle card match
   handleCardMatch() {
-    const firstCardContent = this.firstCardClicked.dataset.framework;
-    const secondCardContent = this.secondCardClicked.dataset.framework;
-    const isMatch = firstCardContent === secondCardContent;
+    const timeTaken = 90 - this.duration;
+    const score = this.calculateScore(timeTaken, this.moveCount);
 
-    if (isMatch) {
-      this.score += this.multiplier;
-      const timeBonus = Math.floor(this.duration / 10); // Adjust divisor for desired scale
-      this.score += timeBonus; // Award time bonus for faster completion
-      this.disableCards();
-
-      if (this.allCardsMatched()) {
-        this.displayMotivationalMessage();
-        clearInterval(this.timerInterval); // Stop the timer on win
-        this.timeBoard.style.display = "none";
-        this.saveScore();
-      }
+    if (this.allCardsMatched()) {
+      this.displayMotivationalMessage(score);
+      clearInterval(this.timerInterval); // Stop the timer on win
+      this.timeBoard.style.display = "none";
+      this.saveScore(score);
     } else {
-      this.unflipCards();
+      // Update the score display
+      const scoreDisplay = document.getElementById("scoreDisplay");
+      scoreDisplay.innerText = score;
     }
-
-    // Update the score display
-    const scoreDisplay = document.getElementById("scoreDisplay");
-    scoreDisplay.innerText = this.score;
   }
 
   // Disable cards
   disableCards() {
-    this.firstCardClicked.removeEventListener("click", (event) =>
-      this.flipCard(event)
-    );
-    this.secondCardClicked.removeEventListener("click", (event) =>
-      this.flipCard(event)
+    const disabledCards = [this.firstCardClicked, this.secondCardClicked];
+    disabledCards.forEach((card) =>
+      card.removeEventListener("click", this.flipCard)
     );
 
     this.resetBoard();
@@ -169,10 +152,9 @@ class MemoryGame {
       this.firstCardClicked.classList.remove("flip");
       this.secondCardClicked.classList.remove("flip");
       this.resetBoard();
-    }, 1200);
+    }, 1300);
   }
 
-  // Flip card
   // Flip card
   flipCard(event) {
     const card = event.currentTarget;
@@ -193,8 +175,6 @@ class MemoryGame {
     }
 
     this.moveCount += 1;
-    console.log("Move count:", this.moveCount);
-
     const moveDisplay = document.getElementById("moveDisplay");
     moveDisplay.textContent = `${this.moveCount}`;
   }
@@ -236,7 +216,7 @@ class MemoryGame {
   }
 
   // Display game over message
-  displayMotivationalMessage() {
+  displayMotivationalMessage(score) {
     this.gameContainer.style.display = "none";
     this.matchedAllCardsMessage.style.display = "block";
     this.restartBtn.style.display = "block";
@@ -246,7 +226,7 @@ class MemoryGame {
     // Check if the 'emoji' element exists before updating its textContent
     const emoji = document.getElementById("emoji");
     if (emoji) {
-      if (this.score >= 30) {
+      if (score >= 30) {
         emoji.textContent = "🎉";
       } else {
         emoji.textContent = ""; // Clear emoji if score is below 30
@@ -255,6 +235,7 @@ class MemoryGame {
       console.error("Emoji element not found.");
     }
   }
+
   // Game over by time
   gameOverByTime() {
     this.displayGameOverMessage.style.display = "block";
@@ -263,12 +244,12 @@ class MemoryGame {
     this.timeBoard.style.display = "none";
     this.restartBtn.style.display = "block";
     this.moveElement.style.display = "none";
-    this.saveScore();
+    this.saveScore(); // Score is 0 because the game ended due to time
     this.displayScoreHistory();
   }
 
   // Save score
-  saveScore() {
+  saveScore(score) {
     const playerName = this.playerNameInput.value.trim();
     if (!playerName) {
       console.error("Player name is required.");
@@ -277,7 +258,7 @@ class MemoryGame {
 
     const scoreEntry = {
       name: playerName,
-      score: this.score,
+      score: score,
       moves: this.moveCount,
       timeTaken: 90 - this.duration, // Calculate time taken
       timestamp: new Date().toISOString(), // Add timestamp
@@ -323,12 +304,30 @@ class MemoryGame {
     // Add new score entries to the list
     this.scoreHistory.forEach((entry) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `Name: ${entry.name}``Score: ${entry.score} points``Matched all cards with ${entry.moves} moves - ${entry.timeTaken} seconds`;
+      listItem.textContent =
+        `Name: ${entry.name} with ${entry.score} points` +
+        ` in ${entry.moves} moves - ${entry.timeTaken} seconds`;
+
+      // Adding style to the list item
+      listItem.style.color = "blue"; // Change the color as desired
+
       scoreHistoryList.appendChild(listItem);
     });
 
     // Show score history list
     scoreHistoryList.style.display = "block";
+  }
+
+  // Calculate score
+  calculateScore(timeTaken, moveCount) {
+    const BASE_SCORE = 100;
+    const TIME_BONUS_MULTIPLIER = 50;
+    const MOVE_PENALTY_MULTIPLIER = 10;
+    const timeBonus = Math.floor(
+      (this.duration - timeTaken) * TIME_BONUS_MULTIPLIER
+    );
+    const movePenalty = moveCount * MOVE_PENALTY_MULTIPLIER;
+    return BASE_SCORE + timeBonus - movePenalty;
   }
 }
 
