@@ -273,6 +273,15 @@ button:hover {
   }
 
   @media (max-width: 450px) {
+
+    .title {
+      font-size: 2rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+
+    }
     .game-container {
       border: 1px solid black;
       width: calc(100% - 30px);
