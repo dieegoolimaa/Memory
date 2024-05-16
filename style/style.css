@@ -221,6 +221,43 @@ button:hover {
   gap: 10px;
 }
 
+/* Style for score history container */
+
+.score-history {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 0.1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.score-history-container {
+  padding: 20px;
+  height: auto;
+}
+
+.score-history h3 {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #0b233d;
+  font-weight: 700;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style for each score history item */
+.score-history li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #victoryMessage,
 #gameOver {
   margin-top: 150px;
@@ -273,29 +310,28 @@ button:hover {
   }
 
   @media (max-width: 450px) {
-
     .title {
       font-size: 2rem;
     }
-    
+
     .subtitle {
       font-size: 1rem;
-
     }
     .game-container {
       margin: 10px auto;
       width: calc(100% - 30px);
       grid-template-columns: repeat(4, minmax(75px, 1fr));
     }
-  
+
     .memory-card {
       width: 75px;
       height: 75px;
     }
-  
+
     .front-face,
     .back-face {
       width: 75px;
       height: 75px;
     }
+  }
 }
