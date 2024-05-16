@@ -283,19 +283,20 @@ button:hover {
 
     }
     .game-container {
+      margin: 10px auto;
       border: 1px solid black;
       width: calc(100% - 30px);
-      grid-template-columns: repeat(4, minmax(85px, 1fr));
+      grid-template-columns: repeat(4, minmax(75px, 1fr));
     }
   
     .memory-card {
-      width: 85px;
-      height: 85px;
+      width: 75px;
+      height: 75px;
     }
   
     .front-face,
     .back-face {
-      width: 85px;
-      height: 85px;
+      width: 75px;
+      height: 75px;
     }
 }
