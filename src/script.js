@@ -18,6 +18,9 @@ class MemoryGame {
     this.goBackBtn = document.querySelector("#goBackToHomePageBtn");
     this.scoreHistoryList = document.getElementById("scoreHistoryList");
     this.scoreHistoryList.style.display = "none";
+    this.scoreHistorySection = document.querySelector(".score-history");
+    this.scoreHistorySection.style.display = "none";
+
     this.playerNameInput = document.getElementById("playerName");
 
     this.restartBtn.addEventListener("click", () => this.startGame());
@@ -50,6 +53,7 @@ class MemoryGame {
     this.scoreElement.style.display = "none";
     this.timeBoard.style.display = "none";
     this.moveElement.style.display = "none";
+    this.scoreHistorySection.style.display = "none";
   }
 
   // Start the game
@@ -69,6 +73,7 @@ class MemoryGame {
     this.moveElement.style.display = "block";
     this.matchedAllCardsMessage.style.display = "none";
     this.displayGameOverMessage.style.display = "none";
+    this.scoreHistorySection.style.display = "none";
 
     this.score = 0;
     const scoreDisplay = document.getElementById("scoreDisplay");
@@ -273,9 +278,9 @@ class MemoryGame {
     const scoreEntry = {
       name: playerName,
       score: this.score,
+      moves: this.moveCount,
       timeTaken: 90 - this.duration, // Calculate time taken
       timestamp: new Date().toISOString(), // Add timestamp
-      description: "Game Over", // Add description
     };
 
     // Initialize scoreHistory if not already initialized
@@ -302,6 +307,9 @@ class MemoryGame {
 
   // Display score history
   displayScoreHistory() {
+    // Display score history section
+    this.scoreHistorySection.style.display = "block";
+
     // Retrieve score history from localStorage
     const storedHistory = JSON.parse(localStorage.getItem("scoreHistory"));
     if (storedHistory) {
@@ -310,12 +318,12 @@ class MemoryGame {
 
     // Populate score history list
     const scoreHistoryList = document.getElementById("scoreHistoryList");
-    scoreHistoryList.innerHTML = ""; // Clear existing list items
+    scoreHistoryList.textContent = ""; // Clear existing list items
 
     // Add new score entries to the list
     this.scoreHistory.forEach((entry) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${entry.name}: ${entry.score} points`;
+      listItem.textContent = `Name: ${entry.name}``Score: ${entry.score} points``Matched all cards with ${entry.moves} moves - ${entry.timeTaken} seconds`;
       scoreHistoryList.appendChild(listItem);
     });
 
