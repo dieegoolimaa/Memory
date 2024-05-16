@@ -284,7 +284,6 @@ button:hover {
     }
     .game-container {
       margin: 10px auto;
-      border: 1px solid black;
       width: calc(100% - 30px);
       grid-template-columns: repeat(4, minmax(75px, 1fr));
     }
